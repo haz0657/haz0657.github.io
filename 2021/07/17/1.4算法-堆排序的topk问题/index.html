@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>冒泡、选择和插入排序 | Haz的小屋</title>
+  <title>堆排序的topk问题 | Haz的小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="冒泡排序(O(n²))：列表中，如果前面的数大于后面的数，则进行交换。依次交换完列表长度后，称为一趟。一趟排序完成后，无序区减少一个数，有需求增加一个数。 代码关键点： 趟、无序区范围">
+  <meta name="description" content="topk问题现在有n个数，设计算法得到前k大的数（k&lt;n） 思路：  1.排序后切片2.排序lowB三人组3.堆排序思路">
 <meta property="og:type" content="article">
-<meta property="og:title" content="冒泡、选择和插入排序">
-<meta property="og:url" content="http://example.com/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:title" content="堆排序的topk问题">
+<meta property="og:url" content="http://example.com/2021/07/17/1.4%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84topk%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Haz的小屋">
-<meta property="og:description" content="冒泡排序(O(n²))：列表中，如果前面的数大于后面的数，则进行交换。依次交换完列表长度后，称为一趟。一趟排序完成后，无序区减少一个数，有需求增加一个数。 代码关键点： 趟、无序区范围">
+<meta property="og:description" content="topk问题现在有n个数，设计算法得到前k大的数（k&lt;n） 思路：  1.排序后切片2.排序lowB三人组3.堆排序思路">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/insert-sort.png">
-<meta property="article:published_time" content="2021-07-13T05:07:45.228Z">
-<meta property="article:modified_time" content="2021-08-27T06:13:46.151Z">
+<meta property="article:published_time" content="2021-07-17T06:56:45.445Z">
+<meta property="article:modified_time" content="2021-08-27T06:13:48.595Z">
 <meta property="article:author" content="Haz">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/insert-sort.png">
   
     <link rel="alternative" href="/atom.xml" title="Haz的小屋" type="application/atom+xml">
   
@@ -173,21 +171,21 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-1.1算法-列表排序-冒泡选择插入排序" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-1.4算法-堆排序的topk问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      冒泡、选择和插入排序
+      堆排序的topk问题
     </h1>
   
 
         
         
-<a href="/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-13T05:07:45.228Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-13</time>
+<a href="/2021/07/17/1.4%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84topk%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2021-07-17T06:56:45.445Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-17</time>
 </a>
 
         
@@ -195,27 +193,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="冒泡排序-O-n²-："><a href="#冒泡排序-O-n²-：" class="headerlink" title="冒泡排序(O(n²))："></a>冒泡排序(O(n²))：</h2><p>列表中，如果前面的数大于后面的数，则进行交换。依次交换完列表长度后，称为一趟。一趟排序完成后，无序区减少一个数，有需求增加一个数。</p>
-<h3 id="代码关键点：-趟、无序区范围"><a href="#代码关键点：-趟、无序区范围" class="headerlink" title="代码关键点： 趟、无序区范围"></a>代码关键点： 趟、无序区范围</h3><span id="more"></span>
+        <h2 id="topk问题"><a href="#topk问题" class="headerlink" title="topk问题"></a>topk问题</h2><p>现在有n个数，设计算法得到前k大的数（k&lt;n）</p>
+<p>思路：</p>
+<blockquote>
+<p>1.排序后切片<br>2.排序lowB三人组<br>3.堆排序思路</p>
+</blockquote>
+<span id="more"></span>
 
-<p>核心代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span>(<span class="params">li</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(li)-<span class="number">1</span>): <span class="comment">#i表示需要走多少趟</span></span><br><span class="line">        exchange = <span class="literal">False</span>       <span class="comment">#这个exchange目前不太懂是什么意思</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(li)-i-<span class="number">1</span>): <span class="comment">#j表示指针走的次数</span></span><br><span class="line">            <span class="keyword">if</span> li[j] &gt; li[j+<span class="number">1</span>]:</span><br><span class="line">                li[j], li[j+<span class="number">1</span>] = li[j+<span class="number">1</span>], li[j]</span><br><span class="line">                exchange = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> exchange:</span><br><span class="line">                <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p><strong>用堆排序解决</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sift</span>(<span class="params">li,low,high</span>):</span>  <span class="comment">#low是堆的根节点位置，high是堆的最后一个元素的位置</span></span><br><span class="line">    i = low  <span class="comment">#i最开始指向根节点</span></span><br><span class="line">    j = <span class="number">2</span> * i + <span class="number">1</span>  <span class="comment">#j是左孩子</span></span><br><span class="line">    tmp = li[low]  <span class="comment">#把堆顶存起来</span></span><br><span class="line">    <span class="keyword">while</span> j &lt;= high: <span class="comment">#只要J位置有数</span></span><br><span class="line">        <span class="keyword">if</span> j+<span class="number">1</span> &lt;= high <span class="keyword">and</span> li[j+<span class="number">1</span>] &lt; li[j]:  <span class="comment">#如果右孩子有并且比较大</span></span><br><span class="line">            j = j + <span class="number">1</span>   <span class="comment">#j指向右孩子</span></span><br><span class="line">        <span class="keyword">if</span> li[j] &lt; tmp:</span><br><span class="line">            li[i] = li[j]</span><br><span class="line">            i = j      <span class="comment"># 往下看一层</span></span><br><span class="line">            j = <span class="number">2</span> * i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:         <span class="comment"># tmp更大，把tmp放到i的位置上</span></span><br><span class="line">            li[i] = tmp   <span class="comment">#把tmp放到某一级领导的位置上</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        li[i] = tmp  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">topk</span>(<span class="params">li, k</span>):</span></span><br><span class="line">    heap = li[<span class="number">0</span>:k]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>((k-<span class="number">2</span>)//<span class="number">2</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        sift(heap, i, k-<span class="number">1</span>)</span><br><span class="line">        <span class="comment">#建堆</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k, <span class="built_in">len</span>(li)-<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> li[i] &gt; heap[<span class="number">0</span>]:</span><br><span class="line">            heap[<span class="number">0</span>] = li[i]</span><br><span class="line">            sift(heap, <span class="number">0</span>, k-<span class="number">1</span>)</span><br><span class="line">        <span class="comment">#遍历</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k-<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        heap[<span class="number">0</span>], heap[i] = heap[i], heap[<span class="number">0</span>]</span><br><span class="line">        sift(heap, <span class="number">0</span>, i-<span class="number">1</span>)</span><br><span class="line">        <span class="comment">#挨个出数</span></span><br><span class="line">    <span class="keyword">return</span> heap</span><br><span class="line"></span><br><span class="line"><span class="comment">#调用</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">li = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1000</span>))</span><br><span class="line">random.shuffle(li)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(topk(li, <span class="number">10</span>))</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="选择排序-O-n²-："><a href="#选择排序-O-n²-：" class="headerlink" title="选择排序(O(n²))："></a>选择排序(O(n²))：</h2><p>依次遍历待排序列表，依次找出最小的数追缴到新列表里面</p>
-<h3 id="代码关键：有序区和无序区，无序区最小数的位置"><a href="#代码关键：有序区和无序区，无序区最小数的位置" class="headerlink" title="代码关键：有序区和无序区，无序区最小数的位置"></a>代码关键：有序区和无序区，无序区最小数的位置</h3><p>核心代码1(不推荐)：<br>缺点：生成了两个列表,占内存比较大</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_sort_simple</span>(<span class="params">li</span>):</span></span><br><span class="line">    li_new = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(li)):</span><br><span class="line">        min_val = <span class="built_in">min</span>(li)  <span class="comment">#调用自带min()函数查找li中最小数</span></span><br><span class="line">        li_new.append(min_val)</span><br><span class="line">        li.remove(min_val)</span><br><span class="line">    <span class="keyword">return</span> li_new</span><br></pre></td></tr></table></figure>
-
-<p>核心代码2(<strong>推荐</strong>)：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_sort</span>(<span class="params">li</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(li)-<span class="number">1</span>):   <span class="comment">#i是第几趟</span></span><br><span class="line">        min_loc = i</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,<span class="built_in">len</span>(li)):  <span class="comment">#j是无序区的下标</span></span><br><span class="line">            <span class="keyword">if</span> li[j] &lt; li[min_loc]</span><br><span class="line">            min_loc = j</span><br><span class="line">        li[i], li[min_loc] = li[min_loc], li[i]</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="插入排序-O-n²-："><a href="#插入排序-O-n²-：" class="headerlink" title="插入排序(O(n²))："></a>插入排序(O(n²))：</h2><p>规则类似于打扑克拍时候我们摸到牌后插牌的习惯，小的放左边，大的放右边。 从无序区抽牌，挪有序区的牌插入抽的牌</p>
-<p>核心代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span>(<span class="params">li</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(li)):  <span class="comment">#i表示摸到牌的下标</span></span><br><span class="line">        tmp = li[i]</span><br><span class="line">        j = i-<span class="number">1</span>    <span class="comment">#j指的是手里的牌的下标</span></span><br><span class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span> <span class="keyword">and</span> li[j] &gt; tmp:</span><br><span class="line">            li[j+<span class="number">1</span>] = li[j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        li[j+<span class="number">1</span>] = tmp</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/insert-sort.png"></p>
-<p><strong>ps:相关数据库知识都是从b站<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uA411N7c5?p=13&spm_id_from=pageDriver">IT编程界杠把子</a>处学习的，感谢大佬！</strong></p>
 
       
 
@@ -306,7 +293,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/07/17/1.4%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84topk%E9%97%AE%E9%A2%98/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,18 +307,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/08/27/1.5%E7%AE%97%E6%B3%95-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          堆排序
+          归并排序
         
       </div>
     </a>
   
   
-    <a href="/2021/07/09/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">初来乍到，请多关照</div>
+    <a href="/2021/07/16/1.2%E7%AE%97%E6%B3%95-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">快速排序</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Haz的小屋</title>
+  <title>堆排序 | Haz的小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="树与二叉树树是一种数据结构，是一种可以递归定义的数据结构 树是由n个节点组成的集合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Haz的小屋">
+<meta property="og:title" content="堆排序">
 <meta property="og:url" content="http://example.com/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/index.html">
 <meta property="og:site_name" content="Haz的小屋">
 <meta property="og:description" content="树与二叉树树是一种数据结构，是一种可以递归定义的数据结构 树是由n个节点组成的集合">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/roots.png">
 <meta property="article:published_time" content="2021-07-16T06:26:40.067Z">
-<meta property="article:modified_time" content="2021-07-16T14:38:04.560Z">
+<meta property="article:modified_time" content="2021-08-27T06:13:40.098Z">
 <meta property="article:author" content="Haz">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/roots.png">
   
@@ -175,6 +176,23 @@
             <article id="post-1.3算法-堆排序" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      堆排序
+    </h1>
+  
+
+        
+        
+<a href="/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2021-07-16T06:26:40.067Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
+</a>
+
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="树与二叉树"><a href="#树与二叉树" class="headerlink" title="树与二叉树"></a>树与二叉树</h2><p>树是一种数据结构，是一种可以递归定义的数据结构</p>
@@ -226,7 +244,7 @@
 </blockquote>
 <h1 id="怎么建立一个堆？"><a href="#怎么建立一个堆？" class="headerlink" title="怎么建立一个堆？"></a>怎么建立一个堆？</h1><p>“农村包围城市”<br>由下至上在多次调整后变得有序，从而成为一个堆</p>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p><strong>实现调整</strong>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sift</span>(<span class="params">li,low,high</span>):</span>  <span class="comment">#low是堆的根节点位置，high是堆的最后一个元素的位置</span></span><br><span class="line">    i = low  <span class="comment">#i最开始指向根节点</span></span><br><span class="line">    j = <span class="number">2</span> * i + <span class="number">1</span>  <span class="comment">#j是左孩子</span></span><br><span class="line">    tmp = li[low]  <span class="comment">#把堆顶存起来</span></span><br><span class="line">    <span class="keyword">while</span> j &lt;= high: <span class="comment">#只要J位置有数</span></span><br><span class="line">        <span class="keyword">if</span> j+<span class="number">1</span> &lt;= high <span class="keyword">and</span> li[j+<span class="number">1</span>] &gt;li[j]:  <span class="comment">#如果右孩子有并且比较大</span></span><br><span class="line">            j = j + <span class="number">1</span>   <span class="comment">#j指向右孩子</span></span><br><span class="line">        <span class="keyword">if</span> li[j] &gt; tmp:</span><br><span class="line">            li[i] = li[j]</span><br><span class="line">            i = j      <span class="comment"># 往下看一层</span></span><br><span class="line">            j = <span class="number">2</span> * i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:         <span class="comment"># tmp更大，把tmp放到i的位置上</span></span><br><span class="line">            li[i] = tmp   <span class="comment">#把tmp放到某一级领导的位置上</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        li[i] = tmp     <span class="comment">#把tmp放到叶子节点上</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sift</span>(<span class="params">li,low,high</span>):</span>  <span class="comment">#low是堆的根节点位置，high是堆的最后一个元素的位置</span></span><br><span class="line">    i = low  <span class="comment">#i最开始指向根节点</span></span><br><span class="line">    j = <span class="number">2</span> * i + <span class="number">1</span>  <span class="comment">#j是左孩子</span></span><br><span class="line">    tmp = li[low]  <span class="comment">#把堆顶存起来</span></span><br><span class="line">    <span class="keyword">while</span> j &lt;= high: <span class="comment">#只要J位置有数</span></span><br><span class="line">        <span class="keyword">if</span> j+<span class="number">1</span> &lt;= high <span class="keyword">and</span> li[j+<span class="number">1</span>] &gt; li[j]:  <span class="comment">#如果右孩子有并且比较大</span></span><br><span class="line">            j = j + <span class="number">1</span>   <span class="comment">#j指向右孩子</span></span><br><span class="line">        <span class="keyword">if</span> li[j] &gt; tmp:</span><br><span class="line">            li[i] = li[j]</span><br><span class="line">            i = j      <span class="comment"># 往下看一层</span></span><br><span class="line">            j = <span class="number">2</span> * i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:         <span class="comment"># tmp更大，把tmp放到i的位置上</span></span><br><span class="line">            li[i] = tmp   <span class="comment">#把tmp放到某一级领导的位置上</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        li[i] = tmp     <span class="comment">#把tmp放到叶子节点上</span></span><br></pre></td></tr></table></figure>
 
 <p>**堆排序(O(nlogn))**：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span>(<span class="params">li</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(li)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>((n-<span class="number">2</span>)//<span class="number">2</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        <span class="comment">#i表示建堆的时候调整的部分的根的下标</span></span><br><span class="line">        sift(li,i,n-<span class="number">1</span>)</span><br><span class="line">        <span class="comment">#堆就建完了</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        <span class="comment">#i指向当前堆的最后一个元素</span></span><br><span class="line">        li[<span class="number">0</span>], li[i] = li[i], li[<span class="number">0</span>]</span><br><span class="line">        sift(li,<span class="number">0</span>,i-<span class="number">1</span>)   <span class="comment">#i-1是新的high</span></span><br></pre></td></tr></table></figure>
@@ -259,6 +277,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -327,14 +356,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          快速排序
         
       </div>
     </a>
   
   
     <a href="/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">排序</div>
+      <div class="article-nav-title">冒泡、选择和插入排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -489,6 +518,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
