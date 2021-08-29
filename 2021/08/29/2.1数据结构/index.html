@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021/7 | Haz的小屋</title>
+  <title>数据结构之--列表-栈-队列 | Haz的小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Haz的小屋">
-<meta property="og:url" content="http://example.com/archives/2021/07/index.html">
+  <meta name="description" content="数据结构：是指相互之间存在着一种或多种关系的元素的集合和该集合中元素之间的关系组成  程序 &#x3D; 数据结构 + 算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构之--列表-栈-队列">
+<meta property="og:url" content="http://example.com/2021/08/29/2.1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Haz的小屋">
+<meta property="og:description" content="数据结构：是指相互之间存在着一种或多种关系的元素的集合和该集合中元素之间的关系组成  程序 &#x3D; 数据结构 + 算法">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-29T01:06:40.888Z">
+<meta property="article:modified_time" content="2021-08-29T10:43:39.629Z">
 <meta property="article:author" content="Haz">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Haz的小屋" type="application/atom+xml">
@@ -166,240 +171,271 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2.1数据结构" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构之--列表-栈-队列
+    </h1>
+  
+
+        
+        
+<a href="/2021/08/29/2.1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
+  	<time datetime="2021-08-29T01:06:40.888Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-29</time>
+</a>
+
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数据结构："><a href="#数据结构：" class="headerlink" title="数据结构："></a>数据结构：</h1><p>是指相互之间存在着一种或多种关系的元素的集合和该集合中元素之间的关系组成</p>
+<blockquote>
+<p>程序 = 数据结构 + 算法</p>
+</blockquote>
+<span id="more"></span>
+
+<p>按照逻辑结构，数据结构可以分为：</p>
+<blockquote>
+<ol>
+<li>线性结构：数据结构中的元素存在  一对一  的相互关系</li>
+<li>树结构：数据结构中的元素存在  一对多  的相互关系</li>
+<li>图结构：数据结构中的元素存在  多对多  的相互关系</li>
+</ol>
+</blockquote>
+<h1 id="1-列表"><a href="#1-列表" class="headerlink" title="1. 列表"></a>1. 列表</h1><p>列表里的元素是顺序存储的            数组？？</p>
+<p>数组跟列表有两点不同：</p>
+<blockquote>
+<ol>
+<li>数组元素类型要相同</li>
+<li>数组长度固定</li>
+</ol>
+</blockquote>
+<p>数组存的是值，列表存的是地址(通过地址指向值)？？</p>
+<p>32位机器上，一个整数占4字节，一个地址占4个字节</p>
+<p>列表的插入(insert)和删除(remove\pop)操作都是O(n)</p>
+<h1 id="2-栈（Stack）"><a href="#2-栈（Stack）" class="headerlink" title="2. 栈（Stack）:"></a>2. 栈（Stack）:</h1><p>是一个数据集合，可以理解为只能在一端进行插入或删除操作的列表</p>
+<p>特点：<strong>先进后出</strong> LIFO(last-in, first-out)</p>
+<p>栈的概念：栈顶(top, 列表最后一个元素的位置)、栈底(bottom, 列表0号元素的位置)</p>
+<p><strong>栈的基本操作：</strong></p>
+<blockquote>
+<p>进栈（压栈）：push<br>出栈：pop (后不加参数，默认是最后一个)<br>取栈顶：gettop (看一眼是什么，但是不拿走)</p>
+</blockquote>
+<p><strong>使用一般的列表结构即可实现栈：</strong></p>
+<blockquote>
+<p>进栈：li.append<br>出栈：li.pop<br>取栈顶：li[-1]</p>
+</blockquote>
+<p><strong>栈的简单实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.stack = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span>(<span class="params">self, element</span>):</span></span><br><span class="line">        self.stack.append(element)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.stack.pop()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_top</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.stack) &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.stack[-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.stack) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">stack = Stack()</span><br><span class="line">stack.push(<span class="number">1</span>)</span><br><span class="line">stack.push(<span class="number">2</span>)</span><br><span class="line">stack.push(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(stack.pop())   <span class="comment">#输出3</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>栈的应用：括号匹配问题</strong></p>
+<blockquote>
+<p>()[]{}  匹配<br>({[]})  匹配<br>([{]})  不匹配</p>
+</blockquote>
+<p><strong>代码：(结合上部建栈)</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">brace_match</span>(<span class="params">s</span>):</span></span><br><span class="line">    stack = Stack()</span><br><span class="line">    <span class="built_in">dict</span> = &#123;<span class="string">&#x27;)&#x27;</span>:<span class="string">&#x27;(&#x27;</span>, <span class="string">&#x27;&#125;&#x27;</span>:<span class="string">&#x27;&#123;&#x27;</span>, <span class="string">&#x27;]&#x27;</span>:<span class="string">&#x27;[&#x27;</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">if</span> ch <span class="keyword">in</span> &#123;<span class="string">&#x27;(&#x27;</span>, <span class="string">&#x27;&#123;&#x27;</span>, <span class="string">&#x27;[&#x27;</span>&#125;:</span><br><span class="line">            stack.push(ch)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> stack.is_empty():</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">elif</span> stack.get_top() == <span class="built_in">dict</span>[ch]:</span><br><span class="line">                stack.pop()</span><br><span class="line">            <span class="keyword">else</span>:  <span class="comment">#stack.get_top() != dict[ch]</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> stack.is_empty():</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(brace_match(<span class="string">&#x27;[]&#123;&#125;()&#x27;</span>))        <span class="comment">#True</span></span><br><span class="line"><span class="built_in">print</span>(brace_match(<span class="string">&#x27;[]&#123;&#125;(&#x27;</span>))         <span class="comment">#False</span></span><br><span class="line"><span class="built_in">print</span>(brace_match(<span class="string">&#x27;[]&#123;&#125;())&#x27;</span>))       <span class="comment">#False</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="3-队列（Queue）"><a href="#3-队列（Queue）" class="headerlink" title="3. 队列（Queue）:"></a>3. 队列（Queue）:</h1><p>是一个数据集合，仅允许在列表的一端进行插入，另一端进行删除</p>
+<p>进行插入的一端称为<strong>队尾</strong>（rear），插入动作称为<strong>进队</strong>或者<strong>入队</strong>；</p>
+<p>进行删除的一端称为<strong>队头</strong>（front），删除动作称为<strong>出队</strong>；</p>
+<p>队列的特点：<strong>先进先出</strong>（first-in, first-out）</p>
+<blockquote>
+<p>remove的参数是元素，pop的参数是下标</p>
+</blockquote>
+<p>从队头(front)出队，从队尾(rear)进队</p>
+<p>需要使用环形队列对数据进行存储</p>
+<blockquote>
+<p>队空条件：rear == front<br>队满条件：(rear + 1) % maxsize == front<br>队首指针前进1：front = (front + 1) % maxsize<br>队尾指针前进1：rear = (rear +1) % maxsize</p>
+</blockquote>
+<p>代码实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size</span>):</span></span><br><span class="line">        self.size = size</span><br><span class="line">        self.queue = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(size)]</span><br><span class="line">        self.front = <span class="number">0</span> <span class="comment"># 队首指针</span></span><br><span class="line">        self.rear = <span class="number">0</span> <span class="comment"># 队尾指针</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span>(<span class="params">self, element</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.is_full():</span><br><span class="line">            self.rear = (self.rear + <span class="number">1</span>) % self.size</span><br><span class="line">            self.queue[self.rear] = element</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> IndexError(<span class="string">&#x27;Queue is full!&#x27;</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.is_empty():</span><br><span class="line">            self.front = (self.front + <span class="number">1</span>) % self.size</span><br><span class="line">            <span class="keyword">return</span> self.queue[self.front]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> IndexError(<span class="string">&#x27;Queue is empty!&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 判断队空</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.front == self.rear</span><br><span class="line">    <span class="comment"># 判断队满</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_full</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> (self.rear + <span class="number">1</span>) % self.size == self.front</span><br><span class="line"></span><br><span class="line"><span class="comment"># q = Queue(5)</span></span><br><span class="line"><span class="comment"># for i in range(5):</span></span><br><span class="line"><span class="comment">#     q.push(i)       </span></span><br><span class="line"><span class="comment"># 队列的长度是5，但是只能入队4个数，入5个数就报错了</span></span><br><span class="line"></span><br><span class="line">q = Queue(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    q.push(i)</span><br><span class="line"><span class="built_in">print</span>(q.pop())      <span class="comment">#先进先出，输出 0</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="双向队列："><a href="#双向队列：" class="headerlink" title="双向队列："></a>双向队列：</h1><p>两端都支持进队和出队操作的队列</p>
+<p>双向队列的基本操作：</p>
+<blockquote>
+<p>队首进队<br>队首出队<br>队尾进队<br>队尾出队</p>
+</blockquote>
+<p>python队列内置模块：</p>
+<blockquote>
+<p>使用方法：from collections import deque<br>创建队列：queue = deque()     <em>可填参数限制队列的长度，超出长度时，队首自动出队</em><br>队尾进队：append()<br>队首出队：popleft()      # ☆☆☆☆<br>双向队列队首进队：appendleft()<br>双向队列队尾出队：pop()<br>左边队首，右边队尾</p>
+</blockquote>
+<p>可以用来做tell命令，打印文件后几行</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/17/1.4%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84topk%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-07-17T06:56:45.445Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/17/1.4%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84topk%E9%97%AE%E9%A2%98/">堆排序的topk问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/08/29/2.1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/16/1.2%E7%AE%97%E6%B3%95-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-16T13:36:59.420Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+    <a href="/2021/08/29/2.2%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8-%E8%BF%B7%E5%AE%AB%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          迷宫问题-栈和队列的应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/08/27/1.6%E7%AE%97%E6%B3%95-%E5%B8%8C%E5%B0%94-%E8%AE%A1%E6%95%B0-%E6%A1%B6-%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">希尔排序-计数排序-桶排序-基数排序</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/16/1.2%E7%AE%97%E6%B3%95-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-16T06:26:40.067Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-13T05:07:45.228Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">冒泡、选择和插入排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/09/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/" class="archive-article-date">
-  	<time datetime="2021-07-09T02:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/09/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/">初来乍到，请多关照</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/09/hello-world/" class="archive-article-date">
-  	<time datetime="2021-07-09T02:42:30.548Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'bN2HvpEf0hrUsOkFg078mauG-gzGzoHsz',
+      app_key: 'F1FocX5aYWaIQPFrUsHpFYhS',
+      placeholder: '有话要说？'
+    });
+</script>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -426,8 +462,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021/7 | Haz的小屋</title>
+  <title>迷宫问题-栈和队列的应用 | Haz的小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Haz的小屋">
-<meta property="og:url" content="http://example.com/archives/2021/07/index.html">
+  <meta name="description" content="1. 栈–深度优先搜索回溯法：从起点开始，按照既定的规则，一条路走到黑，走不通再依次回退，推到有选择的位置位置，继续走，直到走到终点 使用栈存储当前路径">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迷宫问题-栈和队列的应用">
+<meta property="og:url" content="http://example.com/2021/08/29/2.2%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8-%E8%BF%B7%E5%AE%AB%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Haz的小屋">
+<meta property="og:description" content="1. 栈–深度优先搜索回溯法：从起点开始，按照既定的规则，一条路走到黑，走不通再依次回退，推到有选择的位置位置，继续走，直到走到终点 使用栈存储当前路径">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-29T06:23:11.095Z">
+<meta property="article:modified_time" content="2021-08-29T10:41:11.101Z">
 <meta property="article:author" content="Haz">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Haz的小屋" type="application/atom+xml">
@@ -166,240 +171,202 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2.2栈和队列的应用-迷宫问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      迷宫问题-栈和队列的应用
+    </h1>
+  
+
+        
+        
+<a href="/2021/08/29/2.2%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8-%E8%BF%B7%E5%AE%AB%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2021-08-29T06:23:11.095Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-29</time>
+</a>
+
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-栈–深度优先搜索"><a href="#1-栈–深度优先搜索" class="headerlink" title="1. 栈–深度优先搜索"></a>1. 栈–深度优先搜索</h1><p>回溯法：从起点开始，按照既定的规则，一条路走到黑，走不通再依次回退，推到有选择的位置位置，继续走，直到走到终点</p>
+<p>使用栈存储当前路径</p>
+<span id="more"></span>
+<p>代码展示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">maze = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">dirs = [</span><br><span class="line">    <span class="keyword">lambda</span> x, y: (x + <span class="number">1</span>, y),</span><br><span class="line">    <span class="keyword">lambda</span> x, y: (x - <span class="number">1</span>, y),</span><br><span class="line">    <span class="keyword">lambda</span> x, y: (x, y + <span class="number">1</span>),</span><br><span class="line">    <span class="keyword">lambda</span> x, y: (x, y - <span class="number">1</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maze_path</span>(<span class="params">x1, y1, x2, y2</span>):</span></span><br><span class="line">    stack = []</span><br><span class="line">    stack.append((x1, y1))</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(stack) &gt; <span class="number">0</span>:</span><br><span class="line">        curNode = stack[-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> curNode[<span class="number">0</span>] == x2 <span class="keyword">and</span> curNode[<span class="number">1</span>] == y2:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> stack:</span><br><span class="line">                <span class="built_in">print</span>(i)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="comment"># x, y 四个方向 x-1, y; x+1, y; x, y+1; x, y-1</span></span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">dir</span> <span class="keyword">in</span> dirs:</span><br><span class="line">            newNode = <span class="built_in">dir</span>(curNode[<span class="number">0</span>], curNode[<span class="number">1</span>])</span><br><span class="line">            <span class="comment"># if new_Node[0] == x2 and new_Node[1] == y2:    这部分位置不对</span></span><br><span class="line">            <span class="comment">#     for i in stack:</span></span><br><span class="line">            <span class="comment">#         print(i)</span></span><br><span class="line">            <span class="keyword">if</span> maze[newNode[<span class="number">0</span>]][newNode[<span class="number">1</span>]] == <span class="number">0</span>:  <span class="comment"># 如果下一个节点能走</span></span><br><span class="line">                stack.append(newNode)</span><br><span class="line">                maze[newNode[<span class="number">0</span>]][newNode[<span class="number">1</span>]] = <span class="number">2</span>   <span class="comment"># 2表示为已经走过</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            maze[newNode[<span class="number">0</span>]][newNode[<span class="number">1</span>]] = <span class="number">2</span></span><br><span class="line">            stack.pop()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;没有路了！&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">maze_path(<span class="number">1</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">8</span>)   <span class="comment">#输出的是正确的迷宫路径</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-队列–广度优先搜索"><a href="#2-队列–广度优先搜索" class="headerlink" title="2. 队列–广度优先搜索"></a>2. 队列–广度优先搜索</h1><p>从一个节点开始，同时考虑该节点处所有的路径，继续不断寻找，直到找到出口</p>
+<p>使用队列存储当前正在考虑的节点</p>
+<p>代码展示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">maze = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">dirs = [</span><br><span class="line">    <span class="keyword">lambda</span> x, y: (x + <span class="number">1</span>, y),</span><br><span class="line">    <span class="keyword">lambda</span> x, y: (x - <span class="number">1</span>, y),</span><br><span class="line">    <span class="keyword">lambda</span> x, y: (x, y + <span class="number">1</span>),</span><br><span class="line">    <span class="keyword">lambda</span> x, y: (x, y - <span class="number">1</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_r</span>(<span class="params">path</span>):</span></span><br><span class="line">    curnode = path[-<span class="number">1</span>]</span><br><span class="line">    realpath = []</span><br><span class="line">    <span class="keyword">while</span> curnode[<span class="number">2</span>] != -<span class="number">1</span>:  <span class="comment">#直到位置为-1</span></span><br><span class="line">        realpath.append(curnode[<span class="number">0</span>:<span class="number">2</span>])</span><br><span class="line">        curnode = path[curnode[<span class="number">2</span>]]</span><br><span class="line">    realpath.append(curnode[<span class="number">0</span>:<span class="number">2</span>])  <span class="comment">#起点</span></span><br><span class="line">    realpath.reverse()</span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> realpath:</span><br><span class="line">        <span class="built_in">print</span>(node)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maze_path</span>(<span class="params">x1, y1, x2, y2</span>):</span></span><br><span class="line">    queue = deque()</span><br><span class="line">    queue.append((x1, y1, -<span class="number">1</span>))</span><br><span class="line">    path = []</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(queue) &gt; <span class="number">0</span>:</span><br><span class="line">        curnode = queue.popleft()  <span class="comment"># 用popleft而不是pop  注意队列的双向性</span></span><br><span class="line">        path.append(curnode)</span><br><span class="line">        <span class="keyword">if</span> curnode[<span class="number">0</span>] == x2 <span class="keyword">and</span> curnode[<span class="number">1</span>] == y2:</span><br><span class="line">            <span class="comment">#终点</span></span><br><span class="line">            print_r(path)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">dir</span> <span class="keyword">in</span> dirs:</span><br><span class="line">            newnode = <span class="built_in">dir</span>(curnode[<span class="number">0</span>], curnode[<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">if</span> maze[newnode[<span class="number">0</span>]][newnode[<span class="number">1</span>]] == <span class="number">0</span>:</span><br><span class="line">                queue.append((newnode[<span class="number">0</span>], newnode[<span class="number">1</span>], <span class="built_in">len</span>(path)-<span class="number">1</span>))  <span class="comment">#后续节点进队，记录哪个节点带他来的</span></span><br><span class="line">                maze[newnode[<span class="number">0</span>]][newnode[<span class="number">1</span>]] = <span class="number">2</span>  <span class="comment">#标记为已经走过</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;没有路了！&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">maze_path(<span class="number">1</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/17/1.4%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84topk%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-07-17T06:56:45.445Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/17/1.4%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84topk%E9%97%AE%E9%A2%98/">堆排序的topk问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/08/29/2.2%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8-%E8%BF%B7%E5%AE%AB%E9%97%AE%E9%A2%98/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/16/1.2%E7%AE%97%E6%B3%95-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-16T13:36:59.420Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/08/29/2.1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构之--列表-栈-队列</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/16/1.2%E7%AE%97%E6%B3%95-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-16T06:26:40.067Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-13T05:07:45.228Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">冒泡、选择和插入排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/09/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/" class="archive-article-date">
-  	<time datetime="2021-07-09T02:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/09/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/">初来乍到，请多关照</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/09/hello-world/" class="archive-article-date">
-  	<time datetime="2021-07-09T02:42:30.548Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'bN2HvpEf0hrUsOkFg078mauG-gzGzoHsz',
+      app_key: 'F1FocX5aYWaIQPFrUsHpFYhS',
+      placeholder: '有话要说？'
+    });
+</script>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -426,8 +393,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
