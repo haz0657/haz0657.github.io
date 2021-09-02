@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Haz的小屋</title>
+  <title>二叉搜索树 | Haz的小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Haz的小屋">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="二叉搜索树：即所有的左孩子要比其父节点小，所有的右孩子要比其父节点大，满足这个条件的二叉树即称为二叉搜索树 二叉搜索树的中序遍历输出的一定是升序排好序的序列 二叉搜索树的操作：插入、查询、删除  如果要删除的节点是叶子节点，直接删除如果要删除的节点只有一个孩子，将此节点的父亲与孩子连接，然后删除该节点如果要删除的节点有两个孩子，将其右子树的最小节点（该节点最多有一个右孩子）删除，并替换当前节点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉搜索树">
+<meta property="og:url" content="http://example.com/2021/09/02/2.6%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/index.html">
 <meta property="og:site_name" content="Haz的小屋">
+<meta property="og:description" content="二叉搜索树：即所有的左孩子要比其父节点小，所有的右孩子要比其父节点大，满足这个条件的二叉树即称为二叉搜索树 二叉搜索树的中序遍历输出的一定是升序排好序的序列 二叉搜索树的操作：插入、查询、删除  如果要删除的节点是叶子节点，直接删除如果要删除的节点只有一个孩子，将此节点的父亲与孩子连接，然后删除该节点如果要删除的节点有两个孩子，将其右子树的最小节点（该节点最多有一个右孩子）删除，并替换当前节点">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-02T05:53:44.351Z">
+<meta property="article:modified_time" content="2021-09-02T11:29:06.695Z">
 <meta property="article:author" content="Haz">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Haz的小屋" type="application/atom+xml">
@@ -166,38 +171,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-2.6二叉搜索树" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      二叉搜索树
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        
+        
 <a href="/2021/09/02/2.6%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="archive-article-date">
   	<time datetime="2021-09-02T05:53:44.351Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-02</time>
 </a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/02/2.6%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">二叉搜索树</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>二叉搜索树</strong>：即所有的左孩子要比其父节点小，所有的右孩子要比其父节点大，满足这个条件的二叉树即称为二叉搜索树</p>
+<p><strong>二叉搜索树的中序遍历</strong>输出的一定是<strong>升序排好序的</strong>序列</p>
+<p>二叉搜索树的操作：插入、查询、删除</p>
+<blockquote>
+<p>如果要删除的节点是叶子节点，直接删除<br>如果要删除的节点只有一个孩子，将此节点的父亲与孩子连接，然后删除该节点<br>如果要删除的节点有两个孩子，将其右子树的最小节点（该节点最多有一个右孩子）删除，并替换当前节点</p>
+</blockquote>
+<span id="more"></span>
+<p><strong>插入、查找和删除的操作：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BiTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data</span>):</span></span><br><span class="line">        self.data = data</span><br><span class="line">        self.lchild = <span class="literal">None</span></span><br><span class="line">        self.rchild = <span class="literal">None</span></span><br><span class="line">        self.parent = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BST</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, li = <span class="literal">None</span></span>):</span></span><br><span class="line">        self.root = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">if</span> li:</span><br><span class="line">            <span class="keyword">for</span> val <span class="keyword">in</span> li:</span><br><span class="line">                self.insert_no_rec(val)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span>(<span class="params">self, node, val</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        递归插入</span></span><br><span class="line"><span class="string">        :param node:</span></span><br><span class="line"><span class="string">        :param val:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">            node = BiTreeNode(val)</span><br><span class="line">        <span class="keyword">elif</span> val &lt; node.data:</span><br><span class="line">            node.lchild = self.insert(node.lchild, val)</span><br><span class="line">            node.lchild.parent = node</span><br><span class="line">        <span class="keyword">elif</span> val &gt; node.data:</span><br><span class="line">            node.rchild = self.insert(node.rchild, val)</span><br><span class="line">            node.rchild.parent = node</span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_no_rec</span>(<span class="params">self, val</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        非递归插入</span></span><br><span class="line"><span class="string">        :param val:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        p = self.root</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p:              <span class="comment"># 空树</span></span><br><span class="line">            self.root = BiTreeNode(val)           <span class="comment"># 一开始写的 p = BiTreeNode 不对，为什么呢？</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">if</span> val &lt; p.data:</span><br><span class="line">                <span class="keyword">if</span> p.lchild:</span><br><span class="line">                    p = p.lchild</span><br><span class="line">                <span class="keyword">else</span>:            <span class="comment"># 左孩子不存在</span></span><br><span class="line">                    p.lchild = BiTreeNode(val)</span><br><span class="line">                    p.lchild.parent = p</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">elif</span> val &gt; p.data:</span><br><span class="line">                <span class="keyword">if</span> p.rchild:</span><br><span class="line">                    p = p.rchild</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    p.rchild = BiTreeNode(val)</span><br><span class="line">                    p.rchild.parent = p</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span>(<span class="params">self, node, val</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        递归查找</span></span><br><span class="line"><span class="string">        :param node:</span></span><br><span class="line"><span class="string">        :param val:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> node.data &lt; val:</span><br><span class="line">                <span class="keyword">return</span> self.query(node.rchild, val)</span><br><span class="line">            <span class="keyword">elif</span> node.data &gt; val:</span><br><span class="line">                <span class="keyword">return</span> self.query(node.lchild, val)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query_no_rec</span>(<span class="params">self, val</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        非递归查找</span></span><br><span class="line"><span class="string">        :param val:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        p = self.root</span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            <span class="keyword">if</span> p.data &lt; val:</span><br><span class="line">                p = p.rchild</span><br><span class="line">            <span class="keyword">elif</span> p.data &gt; val:</span><br><span class="line">                p = p.lchild</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> p</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__remove_node_1</span>(<span class="params">self, node</span>):</span>    <span class="comment"># 1.删除叶子节点</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        删除   1.叶子节点</span></span><br><span class="line"><span class="string">        :param node: </span></span><br><span class="line"><span class="string">        :return: </span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node.parent:</span><br><span class="line">            self.root = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">elif</span> node == node.parent.lchild:    <span class="comment"># node是他父亲的左孩子</span></span><br><span class="line">            node.parent.lchild = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">else</span>:                            <span class="comment"># node是他父亲的右孩子</span></span><br><span class="line">            node.parent.rchild = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__remove_node_21</span>(<span class="params">self, node</span>):</span>    <span class="comment">#2.1 node 只有一个左孩子</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        删除  2.1 node 只有一个左孩子</span></span><br><span class="line"><span class="string">        :param node: </span></span><br><span class="line"><span class="string">        :return: </span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node.parent:</span><br><span class="line">            self.root = node.lchild</span><br><span class="line">            node.lchild.parent = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">elif</span> node == node.parent.lchild:      <span class="comment"># node是他父亲的左孩子</span></span><br><span class="line">            node.parent.lchild = node.lchild</span><br><span class="line">            node.lchild.parent = node.parent</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            node.parent.rchild = node.lchild   <span class="comment"># node是他父亲的右孩子</span></span><br><span class="line">            node.lchild.parent = node.parent</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__remove_node_22</span>(<span class="params">self, node</span>):</span>   <span class="comment"># 2.2 node只有一个右孩子</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        删除 2.2 node 只有一个右孩子</span></span><br><span class="line"><span class="string">        :param node: </span></span><br><span class="line"><span class="string">        :return: </span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node.parent:</span><br><span class="line">            self.root = node.rchild</span><br><span class="line">            node.rchild.parent = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">elif</span> node == node.parent.lchild:        <span class="comment"># node是他父亲的左孩子</span></span><br><span class="line">            node.parent.lchild = node.rchild</span><br><span class="line">            node.rchild.parent = node.parent</span><br><span class="line">        <span class="keyword">else</span>:                                 <span class="comment"># node是他父亲的右孩子</span></span><br><span class="line">            node.parent.rchild = node.rchild</span><br><span class="line">            node.rchild.parent = node.parent</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params">self, val</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        删除的 总函数</span></span><br><span class="line"><span class="string">        :param val: </span></span><br><span class="line"><span class="string">        :return: </span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> self.root:     <span class="comment"># 不是空树才删</span></span><br><span class="line">            <span class="comment"># 先找到node节点 再判断情况</span></span><br><span class="line">            node = self.query_no_rec(val)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:    <span class="comment"># 不存在</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.lchild <span class="keyword">and</span> <span class="keyword">not</span> node.rchild:   <span class="comment"># 1. 只有叶子节点</span></span><br><span class="line">                self.__remove_node_1(node)        <span class="comment"># 这里几个函数的调用，里面需要的参数是节点node，而不是val，</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="keyword">not</span> node.rchild:           <span class="comment"># 2.1 只有一个左孩子</span></span><br><span class="line">                self.__remove_node_21(node)       <span class="comment"># 我一开始写的是val 所以错了</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="keyword">not</span> node.lchild:</span><br><span class="line">                self.__remove_node_22(node)   <span class="comment"># 2.2只有一个右孩子</span></span><br><span class="line">            <span class="keyword">else</span>:          <span class="comment"># 两个孩子都有，先找右子树最小的节点</span></span><br><span class="line">                min_node = node.rchild</span><br><span class="line">                <span class="keyword">while</span> min_node.lchild:</span><br><span class="line">                    min_node = min_node.lchild</span><br><span class="line">                node.data = min_node.data</span><br><span class="line">                <span class="comment"># 删除min_node  判断min_node是满足情况1还是情况2.2</span></span><br><span class="line">                <span class="keyword">if</span> min_node.rchild:</span><br><span class="line">                    self.__remove_node_22(min_node)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.__remove_node_1(min_node)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pre_order</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            <span class="built_in">print</span>(root.data, end=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">            self.pre_order(root.lchild)</span><br><span class="line">            self.pre_order(root.rchild)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">in_order</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.in_order(root.lchild)</span><br><span class="line">            <span class="built_in">print</span>(root.data, end=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">            self.in_order(root.rchild)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post_order</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.post_order(root.lchild)</span><br><span class="line">            self.post_order(root.rchild)</span><br><span class="line">            <span class="built_in">print</span>(root.data, end=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># li = list(range(500))</span></span><br><span class="line"><span class="comment"># random.shuffle(li)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># tree = BST(li)</span></span><br><span class="line"><span class="comment"># tree.pre_order(tree.root)</span></span><br><span class="line"><span class="comment"># print(&#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># tree.in_order(tree.root)</span></span><br><span class="line"><span class="comment"># print(&#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># tree.post_order(tree.root)   #插入</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># li = list(range(0, 500, 2))</span></span><br><span class="line"><span class="comment"># random.shuffle(li)</span></span><br><span class="line"><span class="comment"># tree = BST(li)</span></span><br><span class="line"><span class="comment"># print(tree.query_no_rec(2))    #查询</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tree = BST([<span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">7</span>])</span><br><span class="line">tree.in_order(tree.root)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">tree.delete(<span class="number">1</span>)</span><br><span class="line">tree.in_order(tree.root)       <span class="comment">#删除</span></span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,517 +241,129 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/09/02/2.6%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/02/2.5%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2021-09-02T03:21:15.172Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-02</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/09/02/2.5%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">树与二叉树</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/02/2.5%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">树与二叉树</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/02/2.4%E5%93%88%E5%B8%8C%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2021-09-02T02:01:01.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-02</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/02/2.4%E5%93%88%E5%B8%8C%E8%A1%A8/">哈希表</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/02/2.3%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2021-09-02T01:00:27.827Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-02</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/02/2.3%E9%93%BE%E8%A1%A8/">链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/08/29/2.2%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8-%E8%BF%B7%E5%AE%AB%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-08-29T06:23:11.095Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-29</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/29/2.2%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8-%E8%BF%B7%E5%AE%AB%E9%97%AE%E9%A2%98/">迷宫问题-栈和队列的应用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/08/29/2.1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-08-29T01:06:40.888Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-29</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/29/2.1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构之--列表-栈-队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/08/27/1.6%E7%AE%97%E6%B3%95-%E5%B8%8C%E5%B0%94-%E8%AE%A1%E6%95%B0-%E6%A1%B6-%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-08-27T06:13:35.744Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-27</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/27/1.6%E7%AE%97%E6%B3%95-%E5%B8%8C%E5%B0%94-%E8%AE%A1%E6%95%B0-%E6%A1%B6-%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">希尔排序-计数排序-桶排序-基数排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/08/27/1.5%E7%AE%97%E6%B3%95-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-08-27T06:03:36.184Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-27</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/27/1.5%E7%AE%97%E6%B3%95-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">归并排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/17/1.4%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84topk%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-07-17T06:56:45.445Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/17/1.4%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F%E7%9A%84topk%E9%97%AE%E9%A2%98/">堆排序的topk问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/16/1.2%E7%AE%97%E6%B3%95-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-16T13:36:59.420Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/16/1.2%E7%AE%97%E6%B3%95-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-16T06:26:40.067Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/16/1.3%E7%AE%97%E6%B3%95-%E5%A0%86%E6%8E%92%E5%BA%8F/">堆排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-07-13T05:07:45.228Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/13/1.1%E7%AE%97%E6%B3%95-%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F-%E5%86%92%E6%B3%A1%E9%80%89%E6%8B%A9%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">冒泡、选择和插入排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/09/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/" class="archive-article-date">
-  	<time datetime="2021-07-09T02:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/09/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/">初来乍到，请多关照</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/09/hello-world/" class="archive-article-date">
-  	<time datetime="2021-07-09T02:42:30.548Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'bN2HvpEf0hrUsOkFg078mauG-gzGzoHsz',
+      app_key: 'F1FocX5aYWaIQPFrUsHpFYhS',
+      placeholder: '有话要说？'
+    });
+</script>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -746,8 +390,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
